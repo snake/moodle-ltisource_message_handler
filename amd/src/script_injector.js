@@ -21,7 +21,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-var messageHandlerScript = window.parent.document.createElement('script');
-messageHandlerScript.type = 'text/javascript';
-messageHandlerScript.src = 'source/message_handler/js/message_handler.js';
-window.parent.document.body.appendChild(messageHandlerScript);
+define(['jquery'], function($) {
+  return {
+    inject: function ($params) {
+      let messageHandlerScript = window.parent.document.createElement('script');
+      messageHandlerScript.type = 'text/javascript';
+      messageHandlerScript.src = 'source/message_handler/amd/src/message_handler.js';
+      window.parent.document.body.appendChild(messageHandlerScript);
+    }
+  }
+});

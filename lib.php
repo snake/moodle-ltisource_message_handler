@@ -40,5 +40,9 @@
  * @param  array $requestparams
  */
 function ltisource_message_handler_before_launch($instance, $endpoint, $requestparams) {
-  echo '<script>'.file_get_contents('source/message_handler/js/script_injector.js').'</script>';
+  global $PAGE;
+
+  $PAGE->requires->js_call_amd('ltisource_message_handler/script_injector', 'inject', array('source/message_handler/amd/src/message_handler.js'));
+
+  // echo '<script>'.file_get_contents('source/message_handler/js/script_injector.js').'</script>';
 }
