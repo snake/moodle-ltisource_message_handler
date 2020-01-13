@@ -43,3 +43,22 @@ defined('MOODLE_INTERNAL') || die();
 function ltisource_message_handler_before_launch($instance, $endpoint, $requestparams) {
     echo '<script>'.file_get_contents('source/message_handler/js/script_injector.js').'</script>';
 }
+
+/**
+ * Return the activity subtypes.
+ *
+ * @param $defaultmodule
+ * @return array
+ */
+function ltisource_message_handler_get_shortcuts($defaultmodule) {
+    // LTISOURCE plugins can also implement callback get_shortcuts() to add items to the activity chooser.
+    // The return values are the same as of the 'mod' callbacks except that $defaultitem is only passed for reference and
+    // should not be added to the return value.
+    $item = clone $defaultmodule;
+    $item->id = 1;
+    $item->name = 'lti_message_handler_1';
+    $item->title = 'Aadrvark tool test 123';
+    $item->link = clone $defaultmodule->link;
+    $item->link->param('something', 'test');
+    return [$item];
+}
